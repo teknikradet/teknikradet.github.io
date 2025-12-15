@@ -16,21 +16,37 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* Smooth, rich red & green gradient */
-    background: linear-gradient(135deg, #8B0000, #006400, #8B0000);
-    background-size: 300% 300%;
-    animation: jolly-bg 30s ease infinite;
-
     overflow: hidden;
+    position: relative;
+    
 }
 
-@keyframes jolly-bg {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+body::before {
+    content: "";
+    position: fixed;
+    inset: -100%;
+    background: repeating-linear-gradient(
+        45deg,
+        #b30000 0px,
+        #b30000 40px,
+        #ffffff3f 40px,
+        #ffffff3f 80px
+    );
+    animation: stripes-down 2s linear infinite;
+    z-index: -1;
+    will-change: transform;
 }
 
+
+
+@keyframes stripes-down {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(113px); 
+    }
+}
 
 .container {
     background: rgba(255,255,255,0.96);
@@ -120,11 +136,10 @@ body {
 .container {
     box-shadow:
         0 25px 50px rgba(0,0,0,0.25),
-        0 0 30px rgba(255, 215, 0, 0.35);
-    border: 2px solid rgba(255, 215, 0, 0.4);
+        0 0 30px rgba(1, 51, 7, 0.788);
+    border: 2px solid rgba(34, 87, 32, 0.486);
 }
 
-/* festive lock */
 .lock-icon {
     filter: drop-shadow(0 0 6px gold);
 }
@@ -168,14 +183,18 @@ body::after {
 }
 
 
-/* ❄️ SNOWFLAKES */
 .snowflake {
     position: fixed;
     top: -10px;
-    color: white;
-    opacity: 0.9;
+    color: #f8fbff;            
+    opacity: 0.95;
     pointer-events: none;
     will-change: transform;
+
+    text-shadow:
+        0 0 2px rgba(0,0,0,0.35),
+        0 0 6px rgba(0,0,0,0.25);
+
     animation: snow-fall linear forwards;
 }
 
@@ -207,7 +226,7 @@ body::after {
 </style>
 </head>
 <script>
-/* ❄️ Snow generator – FIXED */
+    
 const snowflakes = ["❄", "❅", "❆"];
 
 function createSnowflake() {
@@ -229,7 +248,7 @@ function createSnowflake() {
     setTimeout(() => s.remove(), (duration + 1) * 1000);
 }
 
-setInterval(createSnowflake, 250);
+setInterval(createSnowflake, 100);
 </script>
 
 <body>
@@ -238,7 +257,7 @@ setInterval(createSnowflake, 250);
     <div id="lock" class="lock-icon">🔒</div>
 
     <p class="subtitle">
-        Skriv in siffrorna ni samlat i ordning.<br>
+        Skriv in siffrorna ni samlat i ordning:<br>
     </p>
 
     <div class="pin-container" id="pinContainer">
@@ -256,8 +275,7 @@ setInterval(createSnowflake, 250);
     <p id="resultat"></p>
 </div>
 
-<!-- 🎺 Party horn ljud -->
-<audio id="partySound" src="https://orangefreesounds.com/wp-content/uploads/2021/02/Party-horn-sound-effect.mp3"></audio>
+<audio id="partySound" src="https://orangefreesounds.com/wp-content/uploads/2023/11/Christmas-bells-identification-music-or-logo.mp3"></audio>
 
 <script>
 function _0x376c() {
